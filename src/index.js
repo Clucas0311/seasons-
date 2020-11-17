@@ -16,21 +16,29 @@ class App extends React.Component {
 		// default the value to null - don't know the value yet/
 		// intialize state in our constructor function
 		// only time we use a direct assignment is in the constructor
-		this.state = { lat: null };
+		this.state = { lat: null, errorMessage: '' };
 
 		window.navigator.geolocation.getCurrentPosition(
 			(position) => {
 				// update state object - get the latitude
 				this.setState({ lat: position.coords.latitude });
 			},
-			(err) => console.log(err)
+			(err) => {
+				this.setState({ errorMessage: err.message });
+			}
 		);
 	}
 
 	// React says we have define render
 	// Render runs continuosly
 	render() {
-		return <div>Latitude: {this.state.lat} </div>;
+		return (
+			<div>
+				Latitude: {this.state.lat}
+				<br />
+				Error: {this.state.errorMessage}
+			</div>
+		);
 	}
 }
 
