@@ -9,21 +9,28 @@ class App extends React.Component {
 	constructor(props) {
 		// you have to call a function call super with the props object
 		// super is a reference to the parent  constructor function React.Component
-		// must always be called, if not constructor overwrites parent constructor
+		// MUST always be called, if not constructor overwrites parent constructor
 		super(props);
 
 		//state object: it is going to contain important properties needed
 		// default the value to null - don't know the value yet/
+		// intialize state in our constructor function
+		// only time we use a direct assignment is in the constructor
 		this.state = { lat: null };
-	}
 
-	// React says define render
-	render() {
 		window.navigator.geolocation.getCurrentPosition(
-			(position) => console.log(position),
+			(position) => {
+				// update state object - get the latitude
+				this.setState({ lat: position.coords.latitude });
+			},
 			(err) => console.log(err)
 		);
-		return <div>Latitude: </div>;
+	}
+
+	// React says we have define render
+	// Render runs continuosly
+	render() {
+		return <div>Latitude: {this.state.lat} </div>;
 	}
 }
 
