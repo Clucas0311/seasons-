@@ -16,6 +16,7 @@ class App extends React.Component {
 		// default the value to null - don't know the value yet/
 		// intialize state in our constructor function
 		// only time we use a direct assignment is in the constructor
+		// constructors main purpose is initailize the state object
 		this.state = { lat: null, errorMessage: '' };
 	}
 
