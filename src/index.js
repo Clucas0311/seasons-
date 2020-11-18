@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SeasonDisplay from './SeasonDisplay';
+import Spinner from './Spinner';
 
 class App extends React.Component {
 	// constructor function is the first function that is called before anything else
@@ -41,7 +42,7 @@ class App extends React.Component {
 			return <SeasonDisplay lat={this.state.lat} />;
 		}
 
-		return <div>Loading!</div>;
+		return <Spinner />;
 	}
 }
 
