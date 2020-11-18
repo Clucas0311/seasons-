@@ -30,7 +30,7 @@ class App extends React.Component {
 			(err) => this.setState({ errorMessage: err.message })
 		);
 	}
-
+	// wrapping elements in one to eventually render
 	renderContent() {
 		if (this.state.errorMessage && !this.state.lat) {
 			return <div>Error: {this.state.errorMessage}</div>;
