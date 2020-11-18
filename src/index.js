@@ -17,20 +17,19 @@ class App extends React.Component {
 		// intialize state in our constructor function
 		// only time we use a direct assignment is in the constructor
 		this.state = { lat: null, errorMessage: '' };
+	}
 
+	componentDidMount() {
 		window.navigator.geolocation.getCurrentPosition(
-			(position) => {
-				// update state object - get the latitude
-				this.setState({ lat: position.coords.latitude });
-			},
-			(err) => {
-				this.setState({ errorMessage: err.message });
-			}
+			// update state object - get the latitude
+			(position) => this.setState({ lat: position.coords.latitude }),
+			(err) => this.setState({ errorMessage: err.message })
 		);
 	}
 
 	// React says we have define render
 	// Render runs continuosly
+	// you need a render function
 	render() {
 		if (this.state.errorMessage && !this.state.lat) {
 			return <div>Error: {this.state.errorMessage}</div>;
